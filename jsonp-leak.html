@@ -1,0 +1,27 @@
+<html style="width:300px !important;">
+<head>
+
+<script>
+// We need a parser that handles invalid JSON
+
+// Handle the content we get back
+function retrieve(content) {
+document.getElementById("output").innerHTML = JSON.stringify(content);
+}
+
+// Take a JSONP endpoint to avoid leaking it on GitHub :)
+const urlParams = new URLSearchParams(window.location.search);
+const target = urlParams.get('target');
+
+// Include a script tag with the endpoint
+var include = document.createElement('script');
+include.src = target;
+document.head.appendChild(include);
+</script>
+<script src="https://raw.githubusercontent.com/RyanMarcus/dirty-json/master/dirty-json.js"></script>
+</head>
+
+<body>
+Returning JSONP...
+<plaintext id="output"></plaintext>
+</body>
